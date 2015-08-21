@@ -47,15 +47,23 @@ describe(Client) do
     end
   end
 
-  describe("#clients") do
-    it("returns an array of clients for a stylist") do
-      test_stylist = Stylist.new({:name => "Jane", :id => nil})
-      test_stylist.save()
-      test_client1 = Client.new({:name => "Frizzy", :stylist_id => test_stylist.id(), :id => nil})
-      test_client1.save()
-      test_client2 = Client.new({:name => "Hair Ball", :stylist_id => test_stylist.id(), :id => nil})
-      test_client2.save()
-      expect(test_stylist.clients()).to(eq([test_client1, test_client2]))
+  describe("#update") do
+    it("lets you update clients in the database") do
+      client = Client.new({:name => "Jim", :stylist_id => 1, :id => nil})
+      client.save()
+      client.update({:name => "Jimmy"})
+      expect(client.name()).to(eq("Jimmy"))
+    end
+  end
+
+  describe("#delete") do
+    it("lets you delete a client from the database") do
+      client1 = Client.new({:name => "Nice-y", :stylist_id => 1, :id => nil})
+      client1.save()
+      client2 = Client.new({:name => "Meany", :stylist_id => 1, :id => nil})
+      client2.save()
+      client2.delete()
+      expect(Client.all()).to(eq([client1]))
     end
   end
 end

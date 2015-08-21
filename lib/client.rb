@@ -37,4 +37,13 @@ class Client
     end
     found_client
   end
+
+  define_method(:update) do |attributes|
+    @name = attributes.fetch(:name)
+    DB.exec("UPDATE clients SET name = '#{@name}' WHERE id = #{@id};")
+  end
+
+  define_method(:delete) do
+    DB.exec("DELETE FROM clients WHERE id = #{@id};")
+  end
 end
