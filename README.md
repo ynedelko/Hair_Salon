@@ -1,6 +1,6 @@
 # _Hair Salon_
 
-##### _This is an app for hair salon owners. _
+##### This is an app for hair salon owners.
 
 #### By _**Yelena Nedelko**_
 
@@ -21,11 +21,12 @@ _Users can:_
 
 ## Database Setup/ Installation
 
-_IN PSQL_
-_CREATE DATABASE hair_salon;_
-_CREATE TABLE stylists (id serial PRIMARY KEY, name varchar);_
-_CREATE TABLE clients (id serial PRIMARY KEY, name varchar, stylist_id int);_
-_CREATE DATABASE hair_salon_test WITH TEMPLATE hair_salon;_
+_IN PSQL:_<br>
+_CREATE DATABASE hair_salon;_<br>
+_\c hair_salon;_<br>
+_CREATE TABLE stylists (id serial PRIMARY KEY, name varchar);_<br>
+_CREATE TABLE clients (id serial PRIMARY KEY, name varchar, stylist_id int);_<br>
+_CREATE DATABASE hair_salon_test WITH TEMPLATE hair_salon;_<br>
 
 _Webserver testing:_
 * _Install required gems_
