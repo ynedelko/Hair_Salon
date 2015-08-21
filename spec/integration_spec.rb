@@ -4,10 +4,10 @@ Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 require('spec_helper')
 
-describe('adding a new stylist', {:type => :feature}) do
-  it('allows a user to view a list of stylists') do
+describe('viewing all the stylists', {:type => :feature}) do
+  it('allows a user to see all of the list that have been created') do
     visit('/')
-    click_link('View Stylist')
-    expect(page).to have_content('Stylists')
+    click_link('View All Stylists')
+    expect(page).to have_content('stylists')
   end
 end

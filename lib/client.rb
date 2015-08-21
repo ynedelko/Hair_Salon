@@ -3,8 +3,8 @@ class Client
 
   define_method(:initialize) do |attributes|
     @name = attributes.fetch(:name)
-    @stylist_id = attributes.fetch(:stylist_id)
-    @id = attributes.fetch(:id)
+    @stylist_id = attributes.fetch(:stylist_id).to_i()
+    @id = attributes.fetch(:id).to_i()
   end
 
   define_singleton_method(:all) do
@@ -25,7 +25,7 @@ class Client
   end
 
   define_method(:==) do |another_client|
-    self.id().==(another_client.id())
+    self.name().==(another_client.name()).&self.id().==(another_client.id())
   end
 
   define_singleton_method(:find) do |id|
@@ -40,10 +40,11 @@ class Client
 
   define_method(:update) do |attributes|
     @name = attributes.fetch(:name)
-    DB.exec("UPDATE clients SET name = '#{@name}' WHERE id = #{@id};")
+    @id = self.id()
+    DB.exec("UPDATE clients SET name = '#{@name}' WHERE id = #{self.id()};")
   end
 
   define_method(:delete) do
-    DB.exec("DELETE FROM clients WHERE id = #{@id};")
+    DB.exec("DELETE FROM clients WHERE id = #{self.id()};")
   end
 end

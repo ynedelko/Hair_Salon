@@ -3,7 +3,7 @@ class Stylist
 
   define_method(:initialize) do |attributes|
     @name = attributes.fetch(:name)
-    @id = attributes.fetch(:id)
+    @id = attributes.fetch(:id).to_i()
   end
 
   define_singleton_method(:all) do
@@ -23,7 +23,7 @@ class Stylist
   end
 
   define_method(:==) do |another_stylist|
-    self.id().==(another_stylist.id())
+    self.name().==(another_stylist.name())&self.id().==(another_stylist.id())
   end
 
   define_singleton_method(:find) do |id|
@@ -49,12 +49,13 @@ class Stylist
   end
 
   define_method(:update) do |attributes|
-    @name = attributes.fetch(:name)
-    DB.exec("UPDATE stylists SET name = '#{@name}' WHERE id = #{@id};")
+    @name = attributes.fetch(:name, @name)
+    @id = self.id()
+    DB.exec("UPDATE stylists SET name = '#{@name}' WHERE id = #{self.id()};")
   end
 
   define_method(:delete) do
-    DB.exec("DELETE FROM stylists WHERE id = #{@id};")
-    DB.exec("DELETE FROM clients WHERE stylist_id = #{@id};")
+    DB.exec("DELETE FROM stylists WHERE id = #{self.id()};")
+    DB.exec("DELETE FROM clients WHERE stylist_id = #{self.id()};")
   end
 end
