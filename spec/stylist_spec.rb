@@ -47,7 +47,7 @@ end
       expect(Stylist.find(test_stylist2.id())).to(eq(test_stylist2))
     end
   end
-  
+
   describe("#clients") do
     it("returns an array of clients for a stylist") do
       test_stylist = Stylist.new({:name => "Jane", :id => nil})
@@ -60,4 +60,23 @@ end
     end
   end
 
+  describe("#update") do
+    it("lets you update stylists in the database") do
+      stylist = Stylist.new({:name => "Jon", :id => nil})
+      stylist.save()
+      stylist.update({:name => "Jane"})
+      expect(stylist.name()).to(eq("Jane"))
+    end
+  end
+
+  describe("#delete") do
+    it("lets you delete a stylist from the database") do
+      stylist1 = Stylist.new({:name => "Good Stylist", :id => nil})
+      stylist1.save()
+      stylist2 = Stylist.new({:name => "Bad Stylist", :id => nil})
+      stylist2.save()
+      stylist2.delete()
+      expect(Stylist.all()).to(eq([stylist1]))
+    end
+  end
 end
