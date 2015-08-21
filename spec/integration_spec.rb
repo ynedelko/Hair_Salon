@@ -19,3 +19,23 @@ describe('viewing all the clients', {:type => :feature}) do
     expect(page).to have_content('clients')
   end
 end
+
+describe('adding a new stylist', {:type => :feature}) do
+  it('allows a user to add a stylist') do
+    visit('/')
+    click_link('Add a New Stylist')
+    fill_in('name', :with =>'Bob')
+    click_button('Add Stylist')
+    expect(page).to have_content('Thanks')
+  end
+end
+
+describe('adding a new client', {:type => :feature}) do
+  it('allows a user to add a client') do
+    visit('/')
+    click_link('Add a New Client')
+    fill_in('name', :with =>'Sue')
+    click_button('Add Client')
+    expect(page).to have_content('Thanks')
+  end
+end
