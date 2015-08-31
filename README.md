@@ -6,7 +6,8 @@
 
 ## Description
 
-_Users can:_
+_App is in progress..._
+_Users will be able to:_
 
 * _View, add, update and delete stylists._
 * _View, add, update and delete clients._
